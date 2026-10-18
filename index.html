@@ -9,11 +9,11 @@
 <body>
 <x-dc>
 <helmet><link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet"><style>body{margin:0;background:oklch(0.5 0.22 268)}a{color:#ff9b3d}a:hover{color:#fff8ec}@keyframes ring{0%{transform:scale(1);opacity:.55}100%{transform:scale(2.1);opacity:0}}@keyframes wob{0%,100%{transform:rotate(-7deg)}50%{transform:rotate(7deg)}}</style></helmet>
-<div style="height:100vh;background:oklch(0.5 0.22 268);display:flex;align-items:center;justify-content:center;overflow:hidden">
-<div style="width:1200px;height:780px;flex:none;position:relative;transition:transform .9s cubic-bezier(.7,0,.2,1) .15s,opacity .6s .15s;transform:{{ mainT }};opacity:{{ mainO }};background:oklch(0.5 0.22 268);color:#fff8ec;font-family:'Archivo',sans-serif;display:grid;grid-template-columns:400px minmax(0,1fr);gap:36px;padding:32px;box-sizing:border-box">
-  <div style="background:#fff8ec;color:#14163a;border:2.5px solid #14163a;border-radius:28px;box-shadow:0 8px 0 #14163a;padding:24px;display:flex;flex-direction:column;gap:18px">
-    <div style="display:flex;justify-content:space-between;align-items:center;font:500 12px 'DM Mono',monospace;letter-spacing:.1em;text-transform:uppercase"><span>Boîte vocale d'anniversaire</span><button onClick="{{ goHome }}" style="display:flex;align-items:center;gap:6px;height:30px;padding:0 12px;border-radius:999px;border:2px solid #14163a;background:#fff8ec;color:#14163a;font:500 11px 'DM Mono',monospace;letter-spacing:.06em;text-transform:uppercase;cursor:pointer;box-shadow:0 3px 0 #14163a" style-hover="background:#ff9b3d" style-active="transform:translateY(2px);box-shadow:0 1px 0 #14163a">← Accueil</button></div>
-    <div onClick="{{ c.fire }}" style="height:250px;border-radius:18px;border:2.5px solid #14163a;background:repeating-linear-gradient(45deg,#ece2cf 0 8px,#f5ecdc 8px 16px);position:relative;cursor:pointer;display:flex;align-items:center;justify-content:center;font:12px 'DM Mono',monospace;color:#7d7462;overflow:visible"><img src="media/antoine.jpeg" alt="Antoine" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 22%;border-radius:15px"><div style="position:absolute;right:-14px;top:-16px;width:96px;height:96px;border-radius:50%;background:#ff7a2f;border:2.5px solid #14163a;box-shadow:0 4px 0 #14163a;color:#14163a;display:flex;flex-direction:column;align-items:center;justify-content:center;transform:rotate(10deg);line-height:.85"><span style="font:900 40px 'Archivo',sans-serif;font-stretch:72%">40</span><span style="font:900 15px 'Archivo',sans-serif;font-stretch:80%;text-transform:uppercase">ans</span></div><div style="position:absolute;left:14px;bottom:14px;background:#14163a;color:#fff8ec;padding:6px 12px;border-radius:999px;font:800 16px 'Archivo',sans-serif;font-stretch:80%;text-transform:uppercase;letter-spacing:.02em">Pour Antoine</div></div>
+<div style="height:{{ L.outerH }};min-height:100vh;background:oklch(0.5 0.22 268);display:flex;align-items:{{ L.outerAlign }};justify-content:center;overflow:{{ L.outerOv }}">
+<div style="width:{{ L.w }};height:{{ L.h }};flex:none;position:relative;transition:transform .9s cubic-bezier(.7,0,.2,1) .15s,opacity .6s .15s;transform:{{ mainT }};opacity:{{ mainO }};background:oklch(0.5 0.22 268);color:#fff8ec;font-family:'Archivo',sans-serif;display:grid;grid-template-columns:{{ L.cols }};gap:{{ L.gap }};padding:{{ L.pad }};box-sizing:border-box">
+  <div ref="{{ cardRef }}" style="background:#fff8ec;color:#14163a;border:2.5px solid #14163a;border-radius:28px;box-shadow:0 8px 0 #14163a;padding:{{ L.cardPad }};display:flex;flex-direction:column;gap:18px;order:{{ L.cardOrder }};min-width:0">
+    <div style="display:flex;justify-content:space-between;align-items:center;font:500 12px 'DM Mono',monospace;letter-spacing:.1em;text-transform:uppercase"><span>Boîte vocale d'anniversaire</span><button onClick="{{ goHome }}" style="flex:none;white-space:nowrap;display:flex;align-items:center;gap:6px;height:30px;padding:0 12px;border-radius:999px;border:2px solid #14163a;background:#fff8ec;color:#14163a;font:500 11px 'DM Mono',monospace;letter-spacing:.06em;text-transform:uppercase;cursor:pointer;box-shadow:0 3px 0 #14163a" style-hover="background:#ff9b3d" style-active="transform:translateY(2px);box-shadow:0 1px 0 #14163a">← Accueil</button></div>
+    <div onClick="{{ c.fire }}" style="height:{{ L.photoH }};border-radius:18px;border:2.5px solid #14163a;background:repeating-linear-gradient(45deg,#ece2cf 0 8px,#f5ecdc 8px 16px);position:relative;cursor:pointer;display:flex;align-items:center;justify-content:center;font:12px 'DM Mono',monospace;color:#7d7462;overflow:visible"><img src="media/antoine.jpeg" alt="Antoine" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:{{ L.antPos }};border-radius:15px"><div style="position:absolute;right:-14px;top:-16px;width:96px;height:96px;border-radius:50%;background:#ff7a2f;border:2.5px solid #14163a;box-shadow:0 4px 0 #14163a;color:#14163a;display:flex;flex-direction:column;align-items:center;justify-content:center;transform:rotate(10deg);line-height:.85"><span style="font:900 40px 'Archivo',sans-serif;font-stretch:72%">40</span><span style="font:900 15px 'Archivo',sans-serif;font-stretch:80%;text-transform:uppercase">ans</span></div><div style="position:absolute;left:14px;bottom:14px;background:#14163a;color:#fff8ec;padding:6px 12px;border-radius:999px;font:800 16px 'Archivo',sans-serif;font-stretch:80%;text-transform:uppercase;letter-spacing:.02em">Pour Antoine</div></div>
     <div style="background:#14163a;border-radius:16px;padding:18px 18px 16px;display:flex;flex-direction:column;gap:12px;font-family:'DM Mono',monospace;color:#ff9b3d">
       <sc-if value="{{ c.closed }}" hint-placeholder-val="{{ true }}">
         <div style="font-size:20px;letter-spacing:.06em">{{ c.count }} NOUVEAUX MESSAGES</div>
@@ -41,9 +41,9 @@
       <button onClick="{{ c.randomPlay }}" style="flex:1;height:42px;border-radius:999px;border:2px solid #14163a;background:{{ c.shufBg }};color:#14163a;font:500 12px 'DM Mono',monospace;white-space:nowrap;padding:0 8px;cursor:pointer">{{ c.randLabel }}</button>
     </div>
   </div>
-  <div style="display:flex;flex-direction:column;gap:22px;min-width:0">
-    <h1 style="margin:0;font-weight:900;font-stretch:72%;font-size:76px;line-height:.88;text-transform:uppercase;letter-spacing:-.01em">Joyeux anniversaire <span style="color:#ff9b3d">Antoine !</span></h1>
-    <div style="display:grid;grid-template-columns:repeat(9,minmax(0,1fr));gap:10px">
+  <div style="display:{{ L.rightDisp }};flex-direction:column;gap:22px;min-width:0">
+    <h1 ref="{{ h1Ref }}" style="order:0;opacity:{{ L.t1O }};transform:translateY({{ L.t1Y }});margin:0;font-weight:900;font-stretch:72%;font-size:{{ L.h1 }};line-height:.88;text-transform:uppercase;letter-spacing:-.01em">Joyeux anniversaire <span style="color:#ff9b3d">Antoine !</span></h1>
+    <div style="order:2;display:grid;grid-template-columns:repeat({{ L.tileCols }},minmax(0,1fr));gap:10px">
       <sc-for list="{{ c.tiles }}" as="t" hint-placeholder-count="28">
         <div onClick="{{ t.onClick }}" style="position:relative;perspective:900px;cursor:pointer;transform:translateY({{ t.lift }});transition:transform .15s" style-hover="transform:translateY(-4px)">
           <div style="position:relative;transform-style:preserve-3d;transition:transform .65s cubic-bezier(.3,1.4,.5,1);transition-delay:{{ t.delay }};transform:rotateY({{ t.rot }})">
@@ -64,9 +64,9 @@
   </div>
 </div>
 <div style="position:fixed;inset:0;z-index:5;background:oklch(0.5 0.22 268);color:#fff8ec;font-family:'Archivo',sans-serif;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:44px;padding:32px;box-sizing:border-box;transition:transform .9s cubic-bezier(.7,0,.2,1);transform:{{ introT }};box-shadow:0 10px 0 #14163a">
-  <div style="display:flex;align-items:center;gap:12px;font:500 13px 'DM Mono',monospace;letter-spacing:.14em;text-transform:uppercase;text-align:center"><div style="flex:none;width:12px;height:12px;border-radius:50%;background:#ff7a2f;box-shadow:0 0 0 4px rgba(255,122,47,.3)"></div>Boîte vocale d'anniversaire · {{ c.count }} nouveaux messages</div>
+  <div style="display:flex;align-items:center;gap:12px;font:500 13px 'DM Mono',monospace;letter-spacing:.14em;text-transform:uppercase;text-align:center"><div style="flex:none;width:12px;height:12px;border-radius:50%;background:#ff7a2f;box-shadow:0 0 0 4px rgba(255,122,47,.3)"></div><span>Boîte vocale d'anniversaire · {{ c.count }} nouveaux messages</span></div>
   <div style="position:relative">
-    <h1 style="margin:0;text-align:center;font-weight:900;font-stretch:72%;font-size:clamp(64px,11vw,168px);line-height:.86;text-transform:uppercase;letter-spacing:-.01em;text-wrap:balance">Joyeux Anniversaire <span style="color:#ff9b3d;position:relative;white-space:nowrap">Antoine !<div style="position:absolute;right:-124px;top:50%;margin-top:-58px;letter-spacing:0;width:110px;height:110px;border-radius:50%;background:#ff7a2f;border:2.5px solid #14163a;box-shadow:0 5px 0 #14163a;color:#14163a;display:flex;flex-direction:column;align-items:center;justify-content:center;transform:rotate(10deg);line-height:.85"><span style="font:900 46px 'Archivo',sans-serif;font-stretch:72%">40</span><span style="font:900 17px 'Archivo',sans-serif;font-stretch:80%;text-transform:uppercase">ans</span></div></span></h1>
+    <h1 style="margin:0;text-align:center;font-weight:900;font-stretch:72%;font-size:{{ L.introH1 }};line-height:.86;text-transform:uppercase;letter-spacing:-.01em;text-wrap:balance">Joyeux Anniversaire <span style="color:#ff9b3d;position:relative;white-space:nowrap">Antoine !<div style="position:absolute;right:{{ L.badgeR }};top:{{ L.badgeTop }};margin-top:{{ L.badgeMt }};letter-spacing:0;width:{{ L.badge }};height:{{ L.badge }};border-radius:50%;background:#ff7a2f;border:2.5px solid #14163a;box-shadow:0 5px 0 #14163a;color:#14163a;display:flex;flex-direction:column;align-items:center;justify-content:center;transform:rotate(10deg);line-height:.85"><span style="font:900 {{ L.badgeNum }} 'Archivo',sans-serif;font-stretch:72%">40</span><span style="font:900 {{ L.badgeAns }} 'Archivo',sans-serif;font-stretch:80%;text-transform:uppercase">ans</span></div></span></h1>
     
   </div>
   <div style="display:flex;flex-direction:column;align-items:center;gap:18px">
@@ -75,6 +75,28 @@
       <button onClick="{{ pickUp }}" style="position:absolute;inset:0;border-radius:50%;border:2.5px solid #14163a;background:#fff8ec;box-shadow:0 6px 0 #14163a;cursor:pointer;display:flex;align-items:center;justify-content:center;font:900 20px 'Archivo',sans-serif;font-stretch:78%;text-transform:uppercase;color:#14163a" style-hover="background:#ff9b3d" style-active="transform:translateY(5px);box-shadow:0 1px 0 #14163a">{{ handset }}</button>
     </div>
     <div style="font:500 13px 'DM Mono',monospace;color:#d4d7f7">Décroche pour écouter tes messages</div>
+  </div>
+</div>
+<div style="position:fixed;top:0;left:0;right:0;z-index:3;display:{{ L.hdr }};flex-direction:column;background:oklch(0.5 0.22 268 / .9);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border-bottom:2.5px solid #14163a;pointer-events:none;opacity:{{ L.hdrO }};transform:translateY({{ L.hdrY }})">
+  <div style="position:absolute;left:0;right:0;top:100%;height:20px;margin-top:2.5px;background:linear-gradient(rgba(20,22,58,.35),rgba(20,22,58,0))"></div>
+  <div style="height:56px;display:flex;align-items:center;justify-content:center;color:#fff8ec;font-family:'Archivo',sans-serif;font-weight:900;font-stretch:72%;font-size:clamp(20px,6.4vw,30px);text-transform:uppercase;letter-spacing:-.01em;white-space:nowrap">Joyeux anniversaire&nbsp;<span style="color:#ff9b3d">Antoine !</span></div>
+  <div style="overflow:hidden;max-height:{{ L.miniH }};opacity:{{ L.miniO }};pointer-events:{{ L.miniPe }};transition:max-height .3s ease,opacity .25s ease">
+    <div style="position:relative;overflow:hidden;margin:0 12px 10px;display:flex;flex-direction:column;gap:6px;padding:6px 6px 9px;background:#14163a;border:2px solid #14163a;border-radius:14px;font-family:'DM Mono',monospace;color:#ff9b3d">
+     <div style="display:flex;align-items:center;gap:8px;padding-left:8px">
+      <div style="flex:1;min-width:0;font-size:13px;letter-spacing:.04em;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">{{ c.miniLabel }}</div>
+      <button onClick="{{ c.prev }}" style="flex:none;width:38px;height:38px;border-radius:10px;border:2px solid #fff8ec;background:#14163a;color:#fff8ec;font-size:16px;cursor:pointer">←</button>
+      <button onClick="{{ c.toggle }}" style="flex:none;width:46px;height:38px;border-radius:10px;border:2px solid #14163a;background:#ff7a2f;display:flex;align-items:center;justify-content:center;cursor:pointer">
+        <sc-if value="{{ c.paused }}" hint-placeholder-val="{{ true }}"><div style="width:0;height:0;border-left:13px solid #14163a;border-top:8px solid transparent;border-bottom:8px solid transparent"></div></sc-if>
+        <sc-if value="{{ c.playing }}" hint-placeholder-val="{{ false }}"><div style="display:flex;gap:4px"><div style="width:4px;height:14px;background:#14163a"></div><div style="width:4px;height:14px;background:#14163a"></div></div></sc-if>
+      </button>
+      <button onClick="{{ c.next }}" style="flex:none;width:38px;height:38px;border-radius:10px;border:2px solid #fff8ec;background:#14163a;color:#fff8ec;font-size:16px;cursor:pointer">→</button>
+     </div>
+     <div style="display:flex;gap:6px">
+      <button onClick="{{ c.flipAll }}" style="flex:1;height:26px;border-radius:999px;border:1.5px solid rgba(255,248,236,.45);background:transparent;color:#fff8ec;font:500 11px 'DM Mono',monospace;white-space:nowrap;cursor:pointer">Tout retourner</button>
+      <button onClick="{{ c.randomPlay }}" style="flex:1;height:26px;border-radius:999px;border:1.5px solid {{ c.shufBd }};background:{{ c.shufBg }};color:{{ c.shufFg }};font:500 11px 'DM Mono',monospace;white-space:nowrap;cursor:pointer">{{ c.randLabel }}</button>
+     </div>
+      <div style="position:absolute;left:0;bottom:0;height:3px;width:{{ c.pct }};background:#ff9b3d"></div>
+    </div>
   </div>
 </div>
 <canvas ref="{{ c.cv }}" style="position:fixed;inset:0;width:100vw;height:100vh;pointer-events:none;z-index:10"></canvas>
@@ -91,13 +113,16 @@ const S=()=>({open:null,t:0,playing:false,auto:false,order:null});
 const shuf=first=>{const a=MSG.map((_,i)=>i).filter(i=>i!==first);for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return first==null?a.concat([]):[first,...a];};
 const step=(s,d)=>{const L=MSG.length;if(s.open==null)return s.order?s.order[0]:0;if(s.order){const p=s.order.indexOf(s.open);return s.order[(p+d+L)%L];}return (s.open+d+L)%L;};
 class Component extends DCLogic {
-  state={a:S(),b:S(),c:S(),intro:'closed',fit:1,flipped:{}};
-  onRs=()=>this.setState({fit:Math.min(1.5,(window.innerWidth-32)/1200,(window.innerHeight-32)/780)});
+  state={a:S(),b:S(),c:S(),intro:'closed',fit:1,mobile:false,narrow:false,sy:0,flipped:{}};
+  cardRef=React.createRef();h1Ref=React.createRef();
+  measure(){const c=this.cardRef.current,h=this.h1Ref.current;if(c)this._cb=c.getBoundingClientRect().bottom;if(h)this._th=h.offsetHeight;}
+  onSc=()=>{if(this._sr)return;this._sr=requestAnimationFrame(()=>{this._sr=0;if(!this.state.mobile)return;this.measure();this.setState({sy:Math.max(0,Math.round(window.scrollY))});});};
+  onRs=()=>this.setState({mobile:window.innerWidth<760,narrow:window.innerWidth<520,fit:Math.min(1.5,(window.innerWidth-32)/1200,(window.innerHeight-32)/780)});
   cv={a:React.createRef(),b:React.createRef(),c:React.createRef()};
   componentDidMount(){this.au=new Audio();this.au.preload='auto';
     MSG.forEach(m=>m.audios.forEach((src,j)=>{const p=new Audio();p.preload='metadata';const set=()=>{if(isFinite(p.duration)&&p.duration>0){m.durs[j]=p.duration;m.dur=m.durs.reduce((x,y)=>x+y,0);this.forceUpdate();p.ontimeupdate=null;}};p.onloadedmetadata=()=>{if(isFinite(p.duration))set();else{p.ontimeupdate=()=>{set();p.currentTime=0;};p.currentTime=1e7;}};p.src=src;}));
-    this.iv=setInterval(()=>this.tick(),100);this.onRs();window.addEventListener('resize',this.onRs);}
-  componentWillUnmount(){if(this.au)this.au.pause();window.removeEventListener('resize',this.onRs);clearInterval(this.iv);clearTimeout(this.to);}
+    this.iv=setInterval(()=>this.tick(),100);this.onRs();window.addEventListener('resize',this.onRs);window.addEventListener('scroll',this.onSc,{passive:true});}
+  componentWillUnmount(){if(this.au)this.au.pause();window.removeEventListener('resize',this.onRs);window.removeEventListener('scroll',this.onSc);cancelAnimationFrame(this._sr);clearInterval(this.iv);clearTimeout(this.to);}
   sync(){const s=this.state.c,a=this._pc||s,au=this.au;this._pc=s;if(s.open!=null&&this.state.flipped[s.open]==null)this.setState(st=>({flipped:{...st.flipped,[s.open]:0}}));if(!au)return;const m=s.open!=null?MSG[s.open]:null;
     if(!m||!m.audio){if(!au.paused)au.pause();return;}
     if(a.open!==s.open||!m.audios.some(x=>au.src.endsWith(x))||(s.t===0&&a.t>0)){this._part=0;au.src=m.audios[0];au.currentTime=0;}
@@ -118,6 +143,7 @@ class Component extends DCLogic {
     return{cv:this.cv[k],fire:()=>this.fire(k),count:MSG.length,
       tiles:MSG.map((x,i)=>({...x,rot:this.state.flipped[i]!=null?'0deg':'180deg',delay:(this.state.flipped[i]||0)+'ms',backBg:['#ff7a2f','#fff8ec','#ffd23d'][i%3],emoji:EMO[i%EMO.length],emoRot:[-8,6,-3,10,-12,4][i%6]+'deg',num:String(i+1).padStart(2,'0'),hasPhoto:!!x.photo,...(CROP[x.name]||{pos:'center 30%'}),zoom:(CROP[x.name]||{}).zoom||1,origin:(CROP[x.name]||{}).origin||'50% 50%',photo:x.photo||'',onClick:()=>this.upd(k,()=>({open:i,t:0,playing:true})),ring:s.open===i?sel[1]:'transparent',bg:s.open===i?sel[1]:sel[0],lift:s.open===i?'-6px':'0px'})),
       open:!!m,closed:!m,name:m?m.name:'',upper:m?('DE : '+m.name).toUpperCase():'',initials:m?m.initials:'',idx:m?`${String(s.open+1).padStart(2,'0')} / ${MSG.length}`:'',
+      miniLabel:m?m.name.toUpperCase():MSG.length+' MESSAGES',pct:Math.round(p*1000)/10+'%',
       playing:s.playing,paused:!s.playing,el:fmt(m?s.t:0),dur:m?fmt(m.dur):'0:00',
       bars:m?m.wave.map((h,j)=>({h:Math.round(h*100)+'%',op:j/m.wave.length<p?1:.28})):[],
       toggle:()=>this.upd(k,s=>s.open==null?{open:step(s,0),t:0,playing:true}:(s.t>=MSG[s.open].dur?{t:0,playing:true}:{playing:!s.playing})),
@@ -126,18 +152,27 @@ class Component extends DCLogic {
       close:()=>this.upd(k,()=>({open:null,t:0,playing:false,auto:false})),
       flipAll:()=>this.setState(st=>{const f={...st.flipped};let n=0;MSG.forEach((_,i)=>{if(f[i]==null)f[i]=(n++)*45;});return{flipped:f};}),
       randomPlay:()=>this.upd(k,s=>{if(s.order&&s.auto)return{order:null,auto:false};const F=this.state.flipped,sh=a=>{for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;};const idx=MSG.map((_,i)=>i);const order=[...sh(idx.filter(i=>F[i]==null)),...sh(idx.filter(i=>F[i]!=null))];return{order,open:order[0],t:0,playing:true,auto:true};}),
-      randLabel:s.order&&s.auto?'Aléatoire : en cours':'Aléatoire',shufBg:s.order&&s.auto?'#ff9b3d':'transparent',
+      randLabel:s.order&&s.auto?'Aléatoire : en cours':'Aléatoire',shufBg:s.order&&s.auto?'#ff9b3d':'transparent',shufFg:s.order&&s.auto?'#14163a':'#fff8ec',shufBd:s.order&&s.auto?'#ff9b3d':'rgba(255,248,236,.45)',
       playAll:()=>this.upd(k,s=>{const order=s.order?shuf(null):null;return{order,open:order?order[0]:0,t:0,playing:true,auto:true};}),
       toggleAuto:()=>this.upd(k,s=>({auto:!s.auto})),
       auto:s.auto,autoLabel:s.auto?'Lecture enchaînée : oui':'Lecture enchaînée : non',autoBg:s.auto?(k==='b'?'#c6f432':'#ff9b3d'):(k==='b'?'#e4ddf0':'transparent'),
       stop:e=>e.stopPropagation()};}
-  pickUp(){if(this.state.intro!=='closed')return;this.setState({intro:'opening'});this.to=setTimeout(()=>{this.setState({intro:'done'});this.fire('c');},850);}
+  pickUp(){if(this.state.intro!=='closed')return;this.setState({intro:'opening'});this.to=setTimeout(()=>{this.setState({intro:'done'});this.fire('c');requestAnimationFrame(()=>{this.measure();this.forceUpdate();});},850);}
   renderVals(){Promise.resolve().then(()=>this.sync());const st=this.state.intro;const ring=d=>React.createElement('div',{key:d,style:{position:'absolute',inset:0,borderRadius:'50%',border:'2.5px solid #fff8ec',animation:'ring 1.8s ease-out '+d+'s infinite'}});
-    return{c:this.view('c'),pickUp:()=>this.pickUp(),goHome:()=>{clearTimeout(this.to);this.setState(st=>({intro:'closed',c:{...st.c,open:null,t:0,playing:false,auto:false}}));},
+    return{c:this.view('c'),cardRef:this.cardRef,h1Ref:this.h1Ref,pickUp:()=>this.pickUp(),goHome:()=>{clearTimeout(this.to);this.setState(st=>({intro:'closed',c:{...st.c,open:null,t:0,playing:false,auto:false}}));},
       rings:st==='closed'?[ring(0),ring(.6),ring(1.2)]:null,
       handset:React.createElement('span',{style:{display:'inline-block',animation:st==='closed'?'wob .5s ease-in-out infinite':'none'}},'Décrocher'),
       introT:st==='closed'?'translateY(0)':'translateY(-105%)',
-      mainT:st==='closed'?`scale(${(this.state.fit*.94).toFixed(3)}) translateY(40px)`:`scale(${this.state.fit.toFixed(3)})`,mainO:st==='closed'?0:1};}
+      L:this.layout(),
+      mainT:this.state.mobile?(st==='closed'?'translateY(40px)':'none'):st==='closed'?`scale(${(this.state.fit*.94).toFixed(3)}) translateY(40px)`:`scale(${this.state.fit.toFixed(3)})`,mainO:st==='closed'?0:1};}
+  layout(){const m=this.state.mobile,n=this.state.narrow,on=m&&this.state.intro==='done',sy=on?this.state.sy:0,th=this._th||150,HDR=64;
+    const cl=v=>Math.max(0,Math.min(1,v)),p=cl(sy/th),q=cl((sy-th*.55)/(th*.35));
+    const mini=on&&this._cb!=null&&this._cb<HDR;
+    const fx={hdr:on?'flex':'none',hdrO:q.toFixed(3),hdrY:((q-1)*12).toFixed(1)+'px',t1O:(1-p).toFixed(3),t1Y:(sy*.45).toFixed(1)+'px',miniH:mini?'110px':'0px',miniO:mini?1:0,miniPe:mini?'auto':'none'};
+    if(!m)return{outerH:'100vh',outerAlign:'center',outerOv:'hidden',w:'1200px',h:'780px',cols:'400px minmax(0,1fr)',gap:'36px',pad:'32px',cardPad:'24px',photoH:'250px',antPos:'center 22%',rightDisp:'flex',h1:'76px',tileCols:9,
+      ...fx,cardOrder:0,introH1:'clamp(64px,11vw,168px)',badgeR:'-124px',badgeTop:'50%',badgeMt:'-58px',badge:'110px',badgeNum:'46px',badgeAns:'17px'};
+    return{outerH:'auto',outerAlign:'flex-start',outerOv:'visible',w:'100%',h:'auto',cols:'minmax(0,1fr)',gap:'20px',pad:'20px 16px 40px',cardPad:'16px',photoH:n?'200px':'240px',antPos:'center 6%',rightDisp:'contents',h1:'clamp(40px,12vw,76px)',tileCols:n?4:6,
+      ...fx,cardOrder:1,introH1:'clamp(44px,12vw,96px)',badgeR:'-82px',badgeTop:'50%',badgeMt:'-26px',badge:'72px',badgeNum:'30px',badgeAns:'12px'};}
 }
 </script>
 </body>
