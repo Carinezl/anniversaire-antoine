@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Joyeux anniversaire Antoine !</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet><link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet"><style>body{margin:0;background:oklch(0.5 0.22 268)}a{color:#ff9b3d}a:hover{color:#fff8ec}@keyframes ring{0%{transform:scale(1);opacity:.55}100%{transform:scale(2.1);opacity:0}}@keyframes wob{0%,100%{transform:rotate(-7deg)}50%{transform:rotate(7deg)}}</style></helmet>
+<div style="height:100vh;background:oklch(0.5 0.22 268);display:flex;align-items:center;justify-content:center;overflow:hidden">
+<div style="width:1200px;height:780px;flex:none;position:relative;transition:transform .9s cubic-bezier(.7,0,.2,1) .15s,opacity .6s .15s;transform:{{ mainT }};opacity:{{ mainO }};background:oklch(0.5 0.22 268);color:#fff8ec;font-family:'Archivo',sans-serif;display:grid;grid-template-columns:400px minmax(0,1fr);gap:36px;padding:32px;box-sizing:border-box">
+  <div style="background:#fff8ec;color:#14163a;border:2.5px solid #14163a;border-radius:28px;box-shadow:0 8px 0 #14163a;padding:24px;display:flex;flex-direction:column;gap:18px">
+    <div style="display:flex;justify-content:space-between;align-items:center;font:500 12px 'DM Mono',monospace;letter-spacing:.1em;text-transform:uppercase"><span>Boîte vocale d'anniversaire</span><button onClick="{{ goHome }}" style="display:flex;align-items:center;gap:6px;height:30px;padding:0 12px;border-radius:999px;border:2px solid #14163a;background:#fff8ec;color:#14163a;font:500 11px 'DM Mono',monospace;letter-spacing:.06em;text-transform:uppercase;cursor:pointer;box-shadow:0 3px 0 #14163a" style-hover="background:#ff9b3d" style-active="transform:translateY(2px);box-shadow:0 1px 0 #14163a">← Accueil</button></div>
+    <div onClick="{{ c.fire }}" style="height:250px;border-radius:18px;border:2.5px solid #14163a;background:repeating-linear-gradient(45deg,#ece2cf 0 8px,#f5ecdc 8px 16px);position:relative;cursor:pointer;display:flex;align-items:center;justify-content:center;font:12px 'DM Mono',monospace;color:#7d7462;overflow:visible"><img src="media/antoine.jpeg" alt="Antoine" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 22%;border-radius:15px"><div style="position:absolute;right:-14px;top:-16px;width:96px;height:96px;border-radius:50%;background:#ff7a2f;border:2.5px solid #14163a;box-shadow:0 4px 0 #14163a;color:#14163a;display:flex;flex-direction:column;align-items:center;justify-content:center;transform:rotate(10deg);line-height:.85"><span style="font:900 40px 'Archivo',sans-serif;font-stretch:72%">40</span><span style="font:900 15px 'Archivo',sans-serif;font-stretch:80%;text-transform:uppercase">ans</span></div><div style="position:absolute;left:14px;bottom:14px;background:#14163a;color:#fff8ec;padding:6px 12px;border-radius:999px;font:800 16px 'Archivo',sans-serif;font-stretch:80%;text-transform:uppercase;letter-spacing:.02em">Pour Antoine</div></div>
+    <div style="background:#14163a;border-radius:16px;padding:18px 18px 16px;display:flex;flex-direction:column;gap:12px;font-family:'DM Mono',monospace;color:#ff9b3d">
+      <sc-if value="{{ c.closed }}" hint-placeholder-val="{{ true }}">
+        <div style="font-size:20px;letter-spacing:.06em">{{ c.count }} NOUVEAUX MESSAGES</div>
+        <div style="font-size:12px;color:#9aa0d6">Retourne une vignette pour écouter son message</div>
+        <div style="height:36px;display:flex;align-items:center"><div style="flex:1;height:2px;background:#2d3170"></div></div>
+      </sc-if>
+      <sc-if value="{{ c.open }}" hint-placeholder-val="{{ false }}">
+        <div style="display:flex;justify-content:space-between;font-size:12px;color:#9aa0d6"><span>MSG {{ c.idx }}</span><span>{{ c.el }} / {{ c.dur }}</span></div>
+        <div style="font-size:22px;letter-spacing:.04em">{{ c.upper }}</div>
+        <div style="height:36px;display:flex;align-items:flex-end;gap:2px">
+          <sc-for list="{{ c.bars }}" as="w" hint-placeholder-count="44"><div style="flex:1;background:#ff9b3d;height:{{ w.h }};opacity:{{ w.op }}"></div></sc-for>
+        </div>
+      </sc-if>
+    </div>
+    <div style="display:flex;align-items:center;gap:12px">
+      <button onClick="{{ c.prev }}" style="width:54px;height:54px;border-radius:14px;border:2.5px solid #14163a;background:#fff8ec;font-size:20px;cursor:pointer;color:#14163a;box-shadow:0 4px 0 #14163a" style-active="transform:translateY(3px);box-shadow:0 1px 0 #14163a">←</button>
+      <button onClick="{{ c.toggle }}" style="flex:1;height:64px;border-radius:16px;border:2.5px solid #14163a;background:#ff7a2f;display:flex;align-items:center;justify-content:center;gap:12px;cursor:pointer;box-shadow:0 5px 0 #14163a;font:900 18px 'Archivo',sans-serif;font-stretch:80%;text-transform:uppercase;color:#14163a" style-active="transform:translateY(4px);box-shadow:0 1px 0 #14163a">
+        <sc-if value="{{ c.paused }}" hint-placeholder-val="{{ true }}"><div style="width:0;height:0;border-left:16px solid #14163a;border-top:10px solid transparent;border-bottom:10px solid transparent"></div>Lecture</sc-if>
+        <sc-if value="{{ c.playing }}" hint-placeholder-val="{{ false }}"><div style="display:flex;gap:5px"><div style="width:5px;height:18px;background:#14163a"></div><div style="width:5px;height:18px;background:#14163a"></div></div>Pause</sc-if>
+      </button>
+      <button onClick="{{ c.next }}" style="width:54px;height:54px;border-radius:14px;border:2.5px solid #14163a;background:#fff8ec;font-size:20px;cursor:pointer;color:#14163a;box-shadow:0 4px 0 #14163a" style-active="transform:translateY(3px);box-shadow:0 1px 0 #14163a">→</button>
+    </div>
+    <div style="display:flex;gap:10px">
+      <button onClick="{{ c.flipAll }}" style="flex:1;height:42px;border-radius:999px;border:2px solid #14163a;background:#14163a;color:#fff8ec;font:500 12px 'DM Mono',monospace;white-space:nowrap;padding:0 8px;cursor:pointer" style-hover="background:#2d3170">Tout retourner</button>
+      <button onClick="{{ c.randomPlay }}" style="flex:1;height:42px;border-radius:999px;border:2px solid #14163a;background:{{ c.shufBg }};color:#14163a;font:500 12px 'DM Mono',monospace;white-space:nowrap;padding:0 8px;cursor:pointer">{{ c.randLabel }}</button>
+    </div>
+  </div>
+  <div style="display:flex;flex-direction:column;gap:22px;min-width:0">
+    <h1 style="margin:0;font-weight:900;font-stretch:72%;font-size:76px;line-height:.88;text-transform:uppercase;letter-spacing:-.01em">Joyeux anniversaire <span style="color:#ff9b3d">Antoine !</span></h1>
+    <div style="display:grid;grid-template-columns:repeat(9,minmax(0,1fr));gap:10px">
+      <sc-for list="{{ c.tiles }}" as="t" hint-placeholder-count="28">
+        <div onClick="{{ t.onClick }}" style="position:relative;perspective:900px;cursor:pointer;transform:translateY({{ t.lift }});transition:transform .15s" style-hover="transform:translateY(-4px)">
+          <div style="position:relative;transform-style:preserve-3d;transition:transform .65s cubic-bezier(.3,1.4,.5,1);transition-delay:{{ t.delay }};transform:rotateY({{ t.rot }})">
+            <div style="background:{{ t.bg }};color:#14163a;border:2px solid #14163a;border-radius:14px;padding:5px;box-shadow:0 4px 0 #14163a;backface-visibility:hidden;-webkit-backface-visibility:hidden">
+              <div style="position:relative;overflow:hidden;aspect-ratio:1;border-radius:9px;background:repeating-linear-gradient(45deg,#ece2cf 0 5px,#f5ecdc 5px 10px);display:flex;align-items:center;justify-content:center;font:500 16px 'DM Mono',monospace;color:#9a907c">{{ t.initials }}<sc-if value="{{ t.hasPhoto }}" hint-placeholder-val="{{ false }}"><img src="{{ t.photo }}" alt="{{ t.name }}" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:{{ t.pos }};transform:scale({{ t.zoom }});transform-origin:{{ t.origin }}"></sc-if></div>
+              <div style="display:flex;align-items:baseline;gap:5px;padding:5px 3px 1px;min-width:0"><span style="font-weight:700;font-size:11px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">{{ t.name }}</span></div>
+            </div>
+            <div style="position:absolute;inset:0;transform:rotateY(180deg);backface-visibility:hidden;-webkit-backface-visibility:hidden;background:{{ t.backBg }};border:2px solid #14163a;border-radius:14px;box-shadow:0 4px 0 #14163a;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;overflow:hidden">
+              <div style="position:absolute;inset:6px;border:1.5px dashed rgba(20,22,58,.35);border-radius:9px"></div>
+              <div style="position:relative;font-size:28px;line-height:1;transform:rotate({{ t.emoRot }})">{{ t.emoji }}</div>
+              <div style="font:500 10px 'DM Mono',monospace;letter-spacing:.12em;text-transform:uppercase;color:#14163a">Message</div>
+            </div>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+  </div>
+</div>
+<div style="position:fixed;inset:0;z-index:5;background:oklch(0.5 0.22 268);color:#fff8ec;font-family:'Archivo',sans-serif;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:44px;padding:32px;box-sizing:border-box;transition:transform .9s cubic-bezier(.7,0,.2,1);transform:{{ introT }};box-shadow:0 10px 0 #14163a">
+  <div style="display:flex;align-items:center;gap:12px;font:500 13px 'DM Mono',monospace;letter-spacing:.14em;text-transform:uppercase;text-align:center"><div style="flex:none;width:12px;height:12px;border-radius:50%;background:#ff7a2f;box-shadow:0 0 0 4px rgba(255,122,47,.3)"></div>Boîte vocale d'anniversaire · {{ c.count }} nouveaux messages</div>
+  <div style="position:relative">
+    <h1 style="margin:0;text-align:center;font-weight:900;font-stretch:72%;font-size:clamp(64px,11vw,168px);line-height:.86;text-transform:uppercase;letter-spacing:-.01em;text-wrap:balance">Joyeux Anniversaire <span style="color:#ff9b3d;position:relative;white-space:nowrap">Antoine !<div style="position:absolute;right:-124px;top:50%;margin-top:-58px;letter-spacing:0;width:110px;height:110px;border-radius:50%;background:#ff7a2f;border:2.5px solid #14163a;box-shadow:0 5px 0 #14163a;color:#14163a;display:flex;flex-direction:column;align-items:center;justify-content:center;transform:rotate(10deg);line-height:.85"><span style="font:900 46px 'Archivo',sans-serif;font-stretch:72%">40</span><span style="font:900 17px 'Archivo',sans-serif;font-stretch:80%;text-transform:uppercase">ans</span></div></span></h1>
+    
+  </div>
+  <div style="display:flex;flex-direction:column;align-items:center;gap:18px">
+    <div style="position:relative;width:132px;height:132px">
+      {{ rings }}
+      <button onClick="{{ pickUp }}" style="position:absolute;inset:0;border-radius:50%;border:2.5px solid #14163a;background:#fff8ec;box-shadow:0 6px 0 #14163a;cursor:pointer;display:flex;align-items:center;justify-content:center;font:900 20px 'Archivo',sans-serif;font-stretch:78%;text-transform:uppercase;color:#14163a" style-hover="background:#ff9b3d" style-active="transform:translateY(5px);box-shadow:0 1px 0 #14163a">{{ handset }}</button>
+    </div>
+    <div style="font:500 13px 'DM Mono',monospace;color:#d4d7f7">Décroche pour écouter tes messages</div>
+  </div>
+</div>
+<canvas ref="{{ c.cv }}" style="position:fixed;inset:0;width:100vw;height:100vh;pointer-events:none;z-index:10"></canvas>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+const LIST=[["Papa & Maman","media/parents.jpeg","media/parents.mp3"],["Carine","media/carine.jpeg","media/carine.mp3"],["Pierre Marie","media/pierre-marie.jpeg","media/pierre-marie.mp3"],["Satiche","media/satiche.jpeg","media/satiche.mp3"],["Kuch","media/kuch.jpeg","media/kuch.mp3"],["Alcide","media/alcide.jpeg","media/alcide.mp3"],["Jo","media/jo.jpeg","media/jo.mp3"],["Patrick","media/patrick.jpeg","media/patrick.mp3"],["Marinette","media/marinette.jpeg","media/marinette.mp3"],["Dianouch","media/dianouch.jpeg","media/dianouch.mp3"],["Clément","media/clement.jpeg","media/clement.mp3"],["Paupau","media/paupau.jpeg","media/paupau.mp3"],["Patou","media/patou.jpeg","media/patou.mp3"],["Steph","media/steph.jpeg","media/steph.mp3"],["Amélie","media/amelie.jpg","media/amelie.mp3"],["Laurent","media/laurent.jpeg","media/laurent.mp3"],["LT","media/lt.png","media/lt.mp3"],["2deTens","media/2detens.jpeg","media/2detens.mp3"],["Thomas","media/thomas.jpeg","media/thomas.mp3"],["Johan","media/johan.jpeg","media/johan.mp3"],["Aubry","media/aubry.jpeg","media/aubry.mp3"],["Romach","media/romach.jpeg","media/romach.mp3"],["Kim","media/kim.jpeg","media/kim.mp3"],["Capucine","media/capucine.jpeg","media/capucine.mp3"],["Célestin","media/celestin.jpeg","media/celestin.mp3"],["Damien","media/damien.jpeg","media/damien.mp3"],["Chen","media/chen.jpeg","media/chen.mp3"],["David","media/david.jpeg","media/david.mp3"],["Joelle","media/jojo.jpeg","media/joelle.mp3"],["Séraphine","media/seraphine.jpeg","media/seraphine.mp3"],["Matisse","media/matisse.jpeg","media/matisse.mp3"],["Tif & Etienne","media/tif-etienne.jpeg","media/tif-etienne.mp3"],["Man Ping","media/manping.jpeg","media/manping.mp3"],["Jordan","media/jordan.jpeg","media/jordan.mp3"],["Louise & Olivier","media/louise-olivier.jpeg","media/louise-olivier.mp3"],["Granito","media/granito.jpeg","media/granito.mp3"],["Elias","media/elias.jpeg","media/elias.mp3"],["Sophie","media/sophie.jpeg","media/sophie.mp3"],["Najat & Gilbert","media/najat-gilbert.jpeg","media/najat-gilbert.mp3"],["Anna & JC","media/anna-jc.jpeg","media/anna-jc.mp3"],["Cécile","media/cecile.jpeg","media/cecile.mp3"],["Anouck","media/anouck.jpeg","media/anouck.mp3"]];
+function rnd(seed){let s=(seed*7919)%233280;return()=>{s=(s*9301+49297)%233280;return s/233280;};}
+const MSG=LIST.map(([n,photo,audio],i)=>{const r=rnd(i+11);const audios=Array.isArray(audio)?audio:audio?[audio]:[];return{name:n,initials:n[0],photo,audio:audios[0],audios,durs:audios.map(()=>15),dur:15*audios.length,rot:0,size:80,dy:0,wave:Array.from({length:44},()=>0.15+r()*0.85)};});
+const EMO=['🎂','🎈','🎁','🥳','🍾','🎶','🪩','🎤','🥂','🎉','🕺','🌟','🍰','🎺','🎊','💌','🔥','🦄','🍕','🚀','🎸','🌈','🍦','🎯','🎆','🍩','🎡','🧁','🪅','🍓','🎠','🍭','🎹','🌻','🪁','🍪'];
+const CROP={Johan:{pos:'center 22%'},Romach:{pos:'center 64%'},Laurent:{pos:'center 58%'},'Séraphine':{pos:'center 40%',zoom:1.35,origin:'69% 50%'},Chen:{pos:'center 50%',zoom:1.5,origin:'62% 45%'},David:{pos:'center 50%',zoom:2.2,origin:'54% 45%'},Patou:{pos:'center 60%',zoom:1.2,origin:'62% 55%'},'Man Ping':{pos:'center 60%',zoom:1.7,origin:'51% 53%'},LT:{pos:'center 35%'},Anouck:{pos:'center 40%',zoom:1.6,origin:'45% 38%'},'Cécile':{pos:'center 30%',zoom:2.4,origin:'78% 27%'},Elias:{pos:'center 30%',zoom:1.5,origin:'72% 30%'},Sophie:{pos:'center 50%',zoom:1.3,origin:'50% 45%'},'Najat & Gilbert':{pos:'center 60%',zoom:1.3,origin:'45% 55%'},'Anna & JC':{pos:'center 50%',zoom:1.2,origin:'52% 50%'},Granito:{pos:'center 45%',zoom:1.3,origin:'52% 42%'},Jordan:{pos:'center 45%',zoom:1.4,origin:'48% 48%'},'Louise & Olivier':{pos:'30% 50%',zoom:1.15,origin:'37% 45%'},'Tif & Etienne':{pos:'center 30%',zoom:1.8,origin:'56% 30%'}};
+const fmt=s=>`${Math.floor(s/60)}:${String(Math.floor(s%60)).padStart(2,'0')}`;
+const COLS={a:['#d9472f','#1d1a17','#f2b134','#3d6be8'],b:['#ff5fa2','#c6f432','#f6f1ff','#8a7dff'],c:['#ff9b3d','#fff8ec','#14163a','#ffd23d']};
+const S=()=>({open:null,t:0,playing:false,auto:false,order:null});
+const shuf=first=>{const a=MSG.map((_,i)=>i).filter(i=>i!==first);for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return first==null?a.concat([]):[first,...a];};
+const step=(s,d)=>{const L=MSG.length;if(s.open==null)return s.order?s.order[0]:0;if(s.order){const p=s.order.indexOf(s.open);return s.order[(p+d+L)%L];}return (s.open+d+L)%L;};
+class Component extends DCLogic {
+  state={a:S(),b:S(),c:S(),intro:'closed',fit:1,flipped:{}};
+  onRs=()=>this.setState({fit:Math.min(1.5,(window.innerWidth-32)/1200,(window.innerHeight-32)/780)});
+  cv={a:React.createRef(),b:React.createRef(),c:React.createRef()};
+  componentDidMount(){this.au=new Audio();this.au.preload='auto';
+    MSG.forEach(m=>m.audios.forEach((src,j)=>{const p=new Audio();p.preload='metadata';const set=()=>{if(isFinite(p.duration)&&p.duration>0){m.durs[j]=p.duration;m.dur=m.durs.reduce((x,y)=>x+y,0);this.forceUpdate();p.ontimeupdate=null;}};p.onloadedmetadata=()=>{if(isFinite(p.duration))set();else{p.ontimeupdate=()=>{set();p.currentTime=0;};p.currentTime=1e7;}};p.src=src;}));
+    this.iv=setInterval(()=>this.tick(),100);this.onRs();window.addEventListener('resize',this.onRs);}
+  componentWillUnmount(){if(this.au)this.au.pause();window.removeEventListener('resize',this.onRs);clearInterval(this.iv);clearTimeout(this.to);}
+  sync(){const s=this.state.c,a=this._pc||s,au=this.au;this._pc=s;if(s.open!=null&&this.state.flipped[s.open]==null)this.setState(st=>({flipped:{...st.flipped,[s.open]:0}}));if(!au)return;const m=s.open!=null?MSG[s.open]:null;
+    if(!m||!m.audio){if(!au.paused)au.pause();return;}
+    if(a.open!==s.open||!m.audios.some(x=>au.src.endsWith(x))||(s.t===0&&a.t>0)){this._part=0;au.src=m.audios[0];au.currentTime=0;}
+    if(s.playing&&au.paused)au.play().catch(()=>this.upd('c',()=>({playing:false})));else if(!s.playing&&!au.paused)au.pause();}
+  tick(){const ns={};let ch=false;for(const k of ['c']){const s=this.state[k];if(!s.playing)continue;ch=true;const m=MSG[s.open],au=this.au,isA=!!m.audio&&au&&m.audios.some(x=>au.src.endsWith(x));const pt=this._part||0,off=m.durs.slice(0,pt).reduce((x,y)=>x+y,0);const d=m.dur;let t=isA?off+au.currentTime:s.t+.1;
+    if(isA&&au.ended&&pt<m.audios.length-1){this._part=pt+1;au.src=m.audios[pt+1];au.play().catch(()=>{});t=off+m.durs[pt];}
+    else if(isA?au.ended:t>=d){const last=s.order?s.order.indexOf(s.open)===MSG.length-1:s.open===MSG.length-1;ns[k]=s.auto&&!last?{...s,open:step(s,1),t:0}:{...s,t:d,playing:false,auto:false};}else ns[k]={...s,t};}
+    if(ch)this.setState(ns);}
+  upd(k,f){this.setState(st=>({[k]:{...st[k],...f(st[k])}}));}
+  fire(k){const c=this.cv[k].current;if(!c)return;const W=c.width=c.offsetWidth,H=c.height=c.offsetHeight;const ctx=c.getContext('2d');const cols=COLS[k];
+    const P=Array.from({length:180},()=>{const side=Math.random()<.5;return{x:side?0:W,y:H*.75,vx:(side?1:-1)*(4+Math.random()*12),vy:-(8+Math.random()*14),r:Math.random()*6.28,vr:(Math.random()-.5)*.3,w:6+Math.random()*8,h:4+Math.random()*6,c:cols[Math.floor(Math.random()*cols.length)]};});
+    const t0=performance.now();cancelAnimationFrame(this['raf'+k]);
+    const fr=now=>{ctx.clearRect(0,0,W,H);P.forEach(p=>{p.vy+=.32;p.vx*=.985;p.x+=p.vx;p.y+=p.vy;p.r+=p.vr;ctx.save();ctx.translate(p.x,p.y);ctx.rotate(p.r);ctx.fillStyle=p.c;ctx.fillRect(-p.w/2,-p.h/2,p.w,p.h);ctx.restore();});
+      if(now-t0<4200)this['raf'+k]=requestAnimationFrame(fr);else ctx.clearRect(0,0,W,H);};
+    this['raf'+k]=requestAnimationFrame(fr);}
+  view(k){const s=this.state[k];const m=s.open!=null?MSG[s.open]:null;const p=m?Math.min(1,s.t/m.dur):0;
+    const sel={a:['#fff','#fff'],b:['transparent','#c6f432'],c:['#fff8ec','#ff9b3d']}[k];
+    return{cv:this.cv[k],fire:()=>this.fire(k),count:MSG.length,
+      tiles:MSG.map((x,i)=>({...x,rot:this.state.flipped[i]!=null?'0deg':'180deg',delay:(this.state.flipped[i]||0)+'ms',backBg:['#ff7a2f','#fff8ec','#ffd23d'][i%3],emoji:EMO[i%EMO.length],emoRot:[-8,6,-3,10,-12,4][i%6]+'deg',num:String(i+1).padStart(2,'0'),hasPhoto:!!x.photo,...(CROP[x.name]||{pos:'center 30%'}),zoom:(CROP[x.name]||{}).zoom||1,origin:(CROP[x.name]||{}).origin||'50% 50%',photo:x.photo||'',onClick:()=>this.upd(k,()=>({open:i,t:0,playing:true})),ring:s.open===i?sel[1]:'transparent',bg:s.open===i?sel[1]:sel[0],lift:s.open===i?'-6px':'0px'})),
+      open:!!m,closed:!m,name:m?m.name:'',upper:m?('DE : '+m.name).toUpperCase():'',initials:m?m.initials:'',idx:m?`${String(s.open+1).padStart(2,'0')} / ${MSG.length}`:'',
+      playing:s.playing,paused:!s.playing,el:fmt(m?s.t:0),dur:m?fmt(m.dur):'0:00',
+      bars:m?m.wave.map((h,j)=>({h:Math.round(h*100)+'%',op:j/m.wave.length<p?1:.28})):[],
+      toggle:()=>this.upd(k,s=>s.open==null?{open:step(s,0),t:0,playing:true}:(s.t>=MSG[s.open].dur?{t:0,playing:true}:{playing:!s.playing})),
+      prev:()=>this.upd(k,s=>({open:step(s,-1),t:0,playing:true})),
+      next:()=>this.upd(k,s=>({open:step(s,1),t:0,playing:true})),
+      close:()=>this.upd(k,()=>({open:null,t:0,playing:false,auto:false})),
+      flipAll:()=>this.setState(st=>{const f={...st.flipped};let n=0;MSG.forEach((_,i)=>{if(f[i]==null)f[i]=(n++)*45;});return{flipped:f};}),
+      randomPlay:()=>this.upd(k,s=>{if(s.order&&s.auto)return{order:null,auto:false};const F=this.state.flipped,sh=a=>{for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;};const idx=MSG.map((_,i)=>i);const order=[...sh(idx.filter(i=>F[i]==null)),...sh(idx.filter(i=>F[i]!=null))];return{order,open:order[0],t:0,playing:true,auto:true};}),
+      randLabel:s.order&&s.auto?'Aléatoire : en cours':'Aléatoire',shufBg:s.order&&s.auto?'#ff9b3d':'transparent',
+      playAll:()=>this.upd(k,s=>{const order=s.order?shuf(null):null;return{order,open:order?order[0]:0,t:0,playing:true,auto:true};}),
+      toggleAuto:()=>this.upd(k,s=>({auto:!s.auto})),
+      auto:s.auto,autoLabel:s.auto?'Lecture enchaînée : oui':'Lecture enchaînée : non',autoBg:s.auto?(k==='b'?'#c6f432':'#ff9b3d'):(k==='b'?'#e4ddf0':'transparent'),
+      stop:e=>e.stopPropagation()};}
+  pickUp(){if(this.state.intro!=='closed')return;this.setState({intro:'opening'});this.to=setTimeout(()=>{this.setState({intro:'done'});this.fire('c');},850);}
+  renderVals(){Promise.resolve().then(()=>this.sync());const st=this.state.intro;const ring=d=>React.createElement('div',{key:d,style:{position:'absolute',inset:0,borderRadius:'50%',border:'2.5px solid #fff8ec',animation:'ring 1.8s ease-out '+d+'s infinite'}});
+    return{c:this.view('c'),pickUp:()=>this.pickUp(),goHome:()=>{clearTimeout(this.to);this.setState(st=>({intro:'closed',c:{...st.c,open:null,t:0,playing:false,auto:false}}));},
+      rings:st==='closed'?[ring(0),ring(.6),ring(1.2)]:null,
+      handset:React.createElement('span',{style:{display:'inline-block',animation:st==='closed'?'wob .5s ease-in-out infinite':'none'}},'Décrocher'),
+      introT:st==='closed'?'translateY(0)':'translateY(-105%)',
+      mainT:st==='closed'?`scale(${(this.state.fit*.94).toFixed(3)}) translateY(40px)`:`scale(${this.state.fit.toFixed(3)})`,mainO:st==='closed'?0:1};}
+}
+</script>
+</body>
+</html>
