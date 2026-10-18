@@ -79,7 +79,7 @@
 </div>
 <div style="position:fixed;top:0;left:0;right:0;z-index:3;display:{{ L.hdr }};flex-direction:column;background:oklch(0.5 0.22 268 / .9);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border-bottom:2.5px solid #14163a;pointer-events:none;opacity:{{ L.hdrO }};transform:translateY({{ L.hdrY }})">
   <div style="position:absolute;left:0;right:0;top:100%;height:20px;margin-top:2.5px;background:linear-gradient(rgba(20,22,58,.35),rgba(20,22,58,0))"></div>
-  <div style="height:56px;display:flex;align-items:center;justify-content:center;color:#fff8ec;font-family:'Archivo',sans-serif;font-weight:900;font-stretch:72%;font-size:clamp(20px,6.4vw,30px);text-transform:uppercase;letter-spacing:-.01em;white-space:nowrap">Joyeux anniversaire&nbsp;<span style="color:#ff9b3d">Antoine !</span></div>
+  <div onClick="{{ goHome }}" style="height:56px;pointer-events:{{ L.hdrPe }};cursor:pointer;display:flex;align-items:center;justify-content:center;color:#fff8ec;font-family:'Archivo',sans-serif;font-weight:900;font-stretch:72%;font-size:clamp(20px,6.4vw,30px);text-transform:uppercase;letter-spacing:-.01em;white-space:nowrap">Joyeux anniversaire&nbsp;<span style="color:#ff9b3d">Antoine !</span></div>
   <div style="overflow:hidden;max-height:{{ L.miniH }};opacity:{{ L.miniO }};pointer-events:{{ L.miniPe }};transition:max-height .3s ease,opacity .25s ease">
     <div style="position:relative;overflow:hidden;margin:0 12px 10px;display:flex;flex-direction:column;gap:6px;padding:6px 6px 9px;background:#14163a;border:2px solid #14163a;border-radius:14px;font-family:'DM Mono',monospace;color:#ff9b3d">
      <div style="display:flex;align-items:center;gap:8px;padding-left:8px">
@@ -159,7 +159,7 @@ class Component extends DCLogic {
       stop:e=>e.stopPropagation()};}
   pickUp(){if(this.state.intro!=='closed')return;this.setState({intro:'opening'});this.to=setTimeout(()=>{this.setState({intro:'done'});this.fire('c');requestAnimationFrame(()=>{this.measure();this.forceUpdate();});},850);}
   renderVals(){Promise.resolve().then(()=>this.sync());const st=this.state.intro;const ring=d=>React.createElement('div',{key:d,style:{position:'absolute',inset:0,borderRadius:'50%',border:'2.5px solid #fff8ec',animation:'ring 1.8s ease-out '+d+'s infinite'}});
-    return{c:this.view('c'),cardRef:this.cardRef,h1Ref:this.h1Ref,pickUp:()=>this.pickUp(),goHome:()=>{clearTimeout(this.to);this.setState(st=>({intro:'closed',c:{...st.c,open:null,t:0,playing:false,auto:false}}));},
+    return{c:this.view('c'),cardRef:this.cardRef,h1Ref:this.h1Ref,pickUp:()=>this.pickUp(),goHome:()=>{clearTimeout(this.to);window.scrollTo({top:0,behavior:'instant'});this.setState(st=>({intro:'closed',c:{...st.c,open:null,t:0,playing:false,auto:false}}));},
       rings:st==='closed'?[ring(0),ring(.6),ring(1.2)]:null,
       handset:React.createElement('span',{style:{display:'inline-block',animation:st==='closed'?'wob .5s ease-in-out infinite':'none'}},'Décrocher'),
       introT:st==='closed'?'translateY(0)':'translateY(-105%)',
@@ -168,7 +168,7 @@ class Component extends DCLogic {
   layout(){const m=this.state.mobile,n=this.state.narrow,on=m&&this.state.intro==='done',sy=on?this.state.sy:0,th=this._th||150,HDR=64;
     const cl=v=>Math.max(0,Math.min(1,v)),p=cl(sy/th),q=cl((sy-th*.55)/(th*.35));
     const mini=on&&this._cb!=null&&this._cb<HDR;
-    const fx={hdr:on?'flex':'none',hdrO:q.toFixed(3),hdrY:((q-1)*12).toFixed(1)+'px',t1O:(1-p).toFixed(3),t1Y:(sy*.45).toFixed(1)+'px',miniH:mini?'110px':'0px',miniO:mini?1:0,miniPe:mini?'auto':'none'};
+    const fx={hdr:on?'flex':'none',hdrO:q.toFixed(3),hdrPe:q>.5?'auto':'none',hdrY:((q-1)*12).toFixed(1)+'px',t1O:(1-p).toFixed(3),t1Y:(sy*.45).toFixed(1)+'px',miniH:mini?'110px':'0px',miniO:mini?1:0,miniPe:mini?'auto':'none'};
     if(!m)return{outerH:'100vh',outerAlign:'center',outerOv:'hidden',w:'1200px',h:'780px',cols:'400px minmax(0,1fr)',gap:'36px',pad:'32px',cardPad:'24px',photoH:'250px',antPos:'center 22%',rightDisp:'flex',h1:'76px',tileCols:9,
       ...fx,cardOrder:0,introH1:'clamp(64px,11vw,168px)',badgeR:'-124px',badgeTop:'50%',badgeMt:'-58px',badge:'110px',badgeNum:'46px',badgeAns:'17px'};
     return{outerH:'auto',outerAlign:'flex-start',outerOv:'visible',w:'100%',h:'auto',cols:'minmax(0,1fr)',gap:'20px',pad:'20px 16px 40px',cardPad:'16px',photoH:n?'200px':'240px',antPos:'center 6%',rightDisp:'contents',h1:'clamp(40px,12vw,76px)',tileCols:n?4:6,
